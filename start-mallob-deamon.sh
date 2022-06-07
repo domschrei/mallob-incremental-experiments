@@ -25,7 +25,9 @@ echo "" >> $outfile
 echo "*****************************************************" >> $outfile
 echo "Run at $(date)" >> $outfile
 echo "*****************************************************" >> $outfile
-nohup mpirun -np $NUM_PROCESSES -map-by numa:PE=$NUM_THREADS_PER_PROCESS -bind-to core build/mallob -t=$NUM_THREADS_PER_PROCESS -v=4 $@ >> $outfile 2>&1 &
+options="-t=$NUM_THREADS_PER_PROCESS -v=4 -satsolver=CCLLkclg -ans=1 -pls=1 $@"
+echo "Using options: $options"
+nohup mpirun -np $NUM_PROCESSES -map-by numa:PE=$NUM_THREADS_PER_PROCESS -bind-to core build/mallob $options >> $outfile 2>&1 &
 sleep 1
 echo "Mallob started; printing output to $outfile"
 
