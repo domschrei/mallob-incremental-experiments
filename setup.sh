@@ -14,8 +14,8 @@ fi
 mkdir -p applications
 if [ ! -d applications/lilotane ]; then
 	git clone git@github.com:domschrei/lilotane.git
-	mv lilotane applications/lilotane
 	( cd lilotane && git checkout mallotane )
+	mv lilotane applications/lilotane
 fi
 
 
